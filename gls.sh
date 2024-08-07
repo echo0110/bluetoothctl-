@@ -6,9 +6,6 @@ expect "#"
 
 # Start scanning
 send "scan on\r"
-
-# Wait for the device to be found
-set timeout 50
 expect {
     "GS-BLU-0" {
         # If the device is found, get its MAC address and connect
@@ -16,11 +13,11 @@ expect {
         expect "#"
     }
     timeout {
-        # If the device is not found, exit
-        send "quit\r"
+        # If the device is not found within the timeout period, continue scanning
+        # Here, we can either restart the scan or just wait for user input
+        # In this example, we continue to wait indefinitely for user commands
     }
 }
 
-# Exit bluetoothctl
-send "quit\r"
-expect eof
+# Keep the bluetoothctl session open for further manual commands
+interact
