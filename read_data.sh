@@ -33,17 +33,12 @@ expect "#"
 send "select-attribute 49535343-1e4d-4bd9-ba61-23c647249616\r"
 expect "#"
 
-# Read data from the selected attribute
-send "read\r"
-expect {
-    -re "Characteristic value/descriptor: (.+)" {
-        set read_data $expect_out(1,string)
-        send_user "Read data: $read_data\n"
-    }
-    timeout {
-        send_user "Read operation timed out.\n"
-    }
-}
+
+
+# Enable notifications
+send "notify on\r"
+expect "#"
+
 
 # 让脚本保持在 bluetoothctl 命令行界面
 send_user "Type 'quit' to exit bluetoothctl.\n"

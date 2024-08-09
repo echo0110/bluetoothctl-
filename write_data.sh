@@ -25,17 +25,19 @@ expect "#"
 # Enter the gatt menu
 send "menu gatt\r"
 expect "#"
-
 # Select the attribute for writing data
 send "select-attribute 00002af1-0000-1000-8000-00805f9b34fb\r"
 expect "#"
 
-sleep 3
 # Write data to the selected attribute
-set write_data "0x27"  ;
-send "write $write_data\r"
+set write_data "0x13"  ;
+send "write \"$write_data\"\r"
 expect "#"
+#sleep 3
 
-# 结束脚本
-#send_user "Data written: $write_data\n"
+#send "write "0x28"\r"
+#sleep 3
+#expect "#"
+sleep 3
+send_user "Data written: $write_data\n"
 
