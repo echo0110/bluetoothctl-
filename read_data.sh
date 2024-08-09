@@ -45,7 +45,7 @@ expect {
     }
 }
 
-# 结束脚本
-send "quit\r"
-expect eof
+# 让脚本保持在 bluetoothctl 命令行界面
+send_user "Type 'quit' to exit bluetoothctl.\n"
+interact
 
